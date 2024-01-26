@@ -30,3 +30,10 @@ jobs:
           echo "${{ github.workspace }}"
           echo "Triggered in branch ${{ github.ref_name }}"
       - run: echo "🍏 This job's status is ${{ job.status }}."
+#       always() conditional expression so that it always runs after job1 and job2 have completed, regardless of whether they were successful
+  Cleanup-job:
+    if: ${{ always() }}
+    needs: [ Explore-GitHub-Actions ]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Cleanup test resources"
