@@ -21,14 +21,14 @@ jobs:
         id: step1
         run: |
           echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-          echo ::set-output name=exit_code::$?
+          echo "{exit_code}={$?}" >> $GITHUB_ENV
       - name: Step 2
         id: step2
         run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Step3
-        if: steps.step1.outputs.exit_code == 0
+        if: $exit_code == 0
         run: |
           echo "💡 Step 1 completed successfully."
           echo "The ${{ github.repository }} repository has been cloned to the runner."
