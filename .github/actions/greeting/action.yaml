@@ -1,5 +1,4 @@
 name: 'greeting'
-id: 'greeting'
 description: 'Greet someone and record the time'
 inputs:
   who-to-greet:
