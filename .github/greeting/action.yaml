@@ -1,0 +1,14 @@
+name: 'greeting'
+id: 'greeting'
+description: 'Greet someone and record the time'
+inputs:
+  who-to-greet:
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+runs:
+  using: 'docker'
+  main: 'Dockerfile'
+outputs:
+  time:
+    description: 'The time we greeted you'
