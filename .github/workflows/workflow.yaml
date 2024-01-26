@@ -1,6 +1,13 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  push:
+    branches:
+      # Trigger the workflow for all branches except for 'ignore-this-branch'
+      - '*'
+#      # Exclude the 'ignore-this-branch' from triggering the workflow
+#      - '!*nobuild*'
+    skip-checks: true
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
