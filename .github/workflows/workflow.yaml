@@ -28,7 +28,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Step3
-        if: steps.step1.outputs.exit_code == 0
+        if: steps.step1.outputs.exit_code == 1
         run: |
           echo "💡 Step 1 completed successfully."
           echo "The ${{ github.repository }} repository has been cloned to the runner."
