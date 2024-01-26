@@ -7,7 +7,6 @@ on:
       - '*'
 #      # Exclude the 'ignore-this-branch' from triggering the workflow
 #      - '!*nobuild*'
-    skip-checks: true
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest

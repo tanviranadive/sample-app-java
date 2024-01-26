@@ -348,4 +348,4 @@ Now if you run `gradle build`, Gradle should resolve the Joda Time dependency fr
   // end::wrapper[]
 ```
 
-Test workflow 2
+Test workflow 3
