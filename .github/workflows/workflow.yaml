@@ -17,12 +17,21 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}  # Use the Docker Hub access token secret
 
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Step 1
+        id: step1
+        run: |
+          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+          echo ::set-output name=exit_code::$?
+      - name: Step 2
+        id: step2
+        run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Step3
+        if: steps.step1.outputs.exit_code == 0
+        run: |
+          echo "💡 Step 1 completed successfully."
+          echo "The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
