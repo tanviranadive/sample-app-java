@@ -7,6 +7,7 @@ on:
       - '*'
 #      # Exclude the 'ignore-this-branch' from triggering the workflow
 #      - '!*nobuild*'
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -15,7 +16,6 @@ jobs:
       credentials:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}  # Use the Docker Hub access token secret
-
     steps:
       - name: Step 1
         id: step1
@@ -38,8 +38,11 @@ jobs:
           ls
           echo "${{ github.workspace }}"
           echo "Triggered in branch ${{ github.ref_name }}"
+      - name: Custom action
+        id: Customaction
+        uses: ./.github/actions/greeting
       - run: echo "🍏 This job's status is ${{ job.status }}."
-#       always() conditional expression so that it always runs after job1 and job2 have completed, regardless of whether they were successful
+  #       always() conditional expression so that it always runs after job1 and job2 have completed, regardless of whether they were successful
   Cleanup-job:
     if: ${{ always() }}
     needs: [ Explore-GitHub-Actions ]

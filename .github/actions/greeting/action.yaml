@@ -3,11 +3,13 @@ description: 'Greet someone and record the time'
 inputs:
   who-to-greet:
     description: 'Who to greet'
-    required: true
+    required: false
     default: 'World'
 runs:
-  using: 'docker'
-  main: 'Dockerfile'
+  using: "docker"
+  image: './.github/actions/greeting/Dockerfile'
 outputs:
   time:
     description: 'The time we greeted you'
+
+
