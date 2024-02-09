@@ -12,3 +12,11 @@ jobs:
     with:
       image_name: nginx
       tag: ${{ github.ref_name }}
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: do-something
+        id: DoSomething
+        run:
+          echo "${{ github.workspace }}"
+          echo "Triggered in branch ${{ github.ref_name }}"
