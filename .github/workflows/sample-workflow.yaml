@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - '*'
   pull_request:
     types: [ opened, synchronize, reopened ]
 jobs:
@@ -11,4 +11,4 @@ jobs:
     uses: tanviranadive/test-workflows/.github/workflows/workflow.yaml@main
     with:
       image_name: nginx
-      tag: $GITHUB_RUN_NUMBER
+      tag: ${{ github.run_number }}
