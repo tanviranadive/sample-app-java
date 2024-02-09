@@ -1,0 +1,11 @@
+name: Reusable Workflow user
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  job1:
+    uses: tanviranadive/test-workflows/.github/workflows/workflow.yaml@main
+    with:
+      image_name: nginx
+      tag: $GITHUB_RUN_NUMBER

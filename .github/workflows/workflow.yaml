@@ -1,51 +1,51 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on:
-  push:
-    branches:
-      # Trigger the workflow for all branches except for 'ignore-this-branch'
-      - '*'
-#      # Exclude the 'ignore-this-branch' from triggering the workflow
-#      - '!*nobuild*'
-
-jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    container:
-      image: nginx:latest
-      credentials:
-        username: ${{ secrets.DOCKERHUB_USER }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}  # Use the Docker Hub access token secret
-    steps:
-      - name: Step 1
-        id: step1
-        run: |
-          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
-      - name: Step 2
-        id: step2
-        run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Step3
-        if: steps.step1.outputs.exit_code == 1
-        run: |
-          echo "💡 Step 1 completed successfully."
-          echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls
-          echo "${{ github.workspace }}"
-          echo "Triggered in branch ${{ github.ref_name }}"
-      - name: Custom action
-        id: Customaction
-        uses: ./.github/actions/greeting
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-  #       always() conditional expression so that it always runs after job1 and job2 have completed, regardless of whether they were successful
-  Cleanup-job:
-    if: ${{ always() }}
-    needs: [ Explore-GitHub-Actions ]
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Cleanup test resources"
+#name: GitHub Actions Demo
+#run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+#on:
+#  push:
+#    branches:
+#      # Trigger the workflow for all branches except for 'ignore-this-branch'
+#      - '*'
+##      # Exclude the 'ignore-this-branch' from triggering the workflow
+##      - '!*nobuild*'
+#
+#jobs:
+#  Explore-GitHub-Actions:
+#    runs-on: ubuntu-latest
+#    container:
+#      image: nginx:latest
+#      credentials:
+#        username: ${{ secrets.DOCKERHUB_USER }}
+#        password: ${{ secrets.DOCKERHUB_TOKEN }}  # Use the Docker Hub access token secret
+#    steps:
+#      - name: Step 1
+#        id: step1
+#        run: |
+#          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+#          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+#      - name: Step 2
+#        id: step2
+#        run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+#      - name: Check out repository code
+#        uses: actions/checkout@v4
+#      - name: Step3
+#        if: steps.step1.outputs.exit_code == 1
+#        run: |
+#          echo "💡 Step 1 completed successfully."
+#          echo "The ${{ github.repository }} repository has been cloned to the runner."
+#      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+#      - name: List files in the repository
+#        run: |
+#          ls
+#          echo "${{ github.workspace }}"
+#          echo "Triggered in branch ${{ github.ref_name }}"
+#      - name: Custom action
+#        id: Customaction
+#        uses: ./.github/actions/greeting
+#      - run: echo "🍏 This job's status is ${{ job.status }}."
+#  #       always() conditional expression so that it always runs after job1 and job2 have completed, regardless of whether they were successful
+#  Cleanup-job:
+#    if: ${{ always() }}
+#    needs: [ Explore-GitHub-Actions ]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: echo "Cleanup test resources"
