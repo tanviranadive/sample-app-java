@@ -1,8 +1,11 @@
 name: Reusable Workflow user
 on:
+  workflow_dispatch:
   push:
     branches:
-      - '*'
+      - 'main'
+  pull_request:
+    types: [ opened, synchronize, reopened ]
 jobs:
   job1:
     uses: tanviranadive/test-workflows/.github/workflows/workflow.yaml@main
